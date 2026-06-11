@@ -1,26 +1,461 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+
+  /* Silver-dark palette — green is accent only */
+  --color-space-dark: #050510;
+  --color-space-deep: #0a0a1a;
+  --color-space-card: #0f0f20;
+  --color-silver: #94a3b8;
+  --color-silver-light: #cbd5e1;
+  --color-silver-bright: #e2e8f0;
+  --color-accent: #34d399;
+  --color-accent-light: #6ee7b7;
+  --color-accent-warm: #fbbf24;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050510;
+  --foreground: #cbd5e1;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  width: 100%;
+  margin: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050510;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ═══════════ PANEL (solid — no backdrop-filter for mobile touch reliability) ═══════════ */
+.glass,
+.panel {
+  background: rgba(15, 15, 32, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.glass-hover:hover {
+  border-color: rgba(148, 163, 184, 0.15);
+  background: rgba(15, 15, 32, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ═══════════ NEBULA BACKGROUND BLOBS ═══════════ */
+.nebula {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════ SECTION LABEL (flanking lines) ═══════════ */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.section-label::before,
+.section-label::after {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  background: #94a3b8;
+  border-radius: 1px;
+}
+
+/* ═══════════ FLOAT ANIMATION ═══════════ */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ═══════════ GLOW PULSE ═══════════ */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* ═══════════ FADE IN (scroll-triggered) ═══════════ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ═══════════ ORBIT RINGS ═══════════ */
+@keyframes orbit-spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  animation: orbit-spin linear infinite;
+}
+
+/* ═══════════ MARQUEE ═══════════ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════════ NAV UNDERLINE ═══════════ */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #94a3b8;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ═══════════ FLIP CARD (click toggle — no 3D transforms) ═══════════ */
+.flip-card {
+  width: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+}
+
+.flip-card-front {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  display: none;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.flip-card-inner.is-flipped .flip-card-front {
+  display: none;
+}
+
+.flip-card-inner.is-flipped .flip-card-back {
+  display: flex;
+}
+
+/* ═══════════ SITE HEADER (absolute — scrolls away with page) ═══════════ */
+.site-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+}
+
+.site-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 4.5rem;
+  background: rgba(5, 5, 16, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .site-header-bar {
+    height: 5rem;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header-bar {
+    height: auto;
+    padding: 1rem 2rem;
+    background: transparent;
+    border-bottom: none;
+  }
+}
+
+.site-header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 3.2rem;
+  width: auto;
+  margin-left: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .site-header-logo {
+    height: 5rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header-logo {
+    height: 4.4rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.site-header-logo-img {
+  height: 140%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ═══════════ MOBILE NAV (React state-driven open/close) ═══════════ */
+.mobile-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid #1e293b;
+  background: rgba(10, 10, 26, 0.9);
+  color: #94a3b8;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(52, 211, 153, 0.15);
+  position: relative;
+  z-index: 9999 !important;
+}
+
+.mobile-nav-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 4.5rem;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 4.5rem;
+  z-index: 2;
+  background: #050510;
+  border-bottom: 1px solid #1e293b;
+  max-height: calc(100dvh - 4.5rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 640px) {
+  .mobile-nav-backdrop {
+    top: 5rem;
+  }
+
+  .mobile-nav-drawer {
+    top: 5rem;
+    max-height: calc(100dvh - 5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .mobile-burger,
+  .mobile-nav-backdrop,
+  .mobile-nav-drawer {
+    display: none !important;
+  }
+}
+
+/* ═══════════ NATIVE DETAILS (FAQ + Programs — works without JavaScript) ═══════════ */
+.faq-summary,
+.program-summary {
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.faq-summary::-webkit-details-marker,
+.program-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-details[open]>.faq-summary,
+.program-details[open]>.program-summary {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: manipulation;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  transition: all 0.8s ease;
+}
+
+.btn-primary:hover::before {
+  left: 150%;
+}
+
+.btn-primary:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.08), inset 0 0 10px rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #cbd5e1, #f8fafc);
+  color: #050510;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: manipulation;
+}
+
+.btn-accent:hover {
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #ffffff, #cbd5e1);
+}
+
+/* ═══════════ WHATSAPP FLOATING BUTTON ═══════════ */
+.whatsapp-pulse {
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  animation: whatsapp-glow 2s infinite;
+}
+
+@keyframes whatsapp-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* ═══════════ TEXT GRADIENT UTILITY (SAFARI/IOS COMPATIBILITY) ═══════════ */
+.text-gradient {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
 }
