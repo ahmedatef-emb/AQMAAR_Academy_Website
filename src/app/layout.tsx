@@ -23,11 +23,6 @@ export const metadata: Metadata = {
   description: "AQMAAR Academy is an innovative tech school empowering young learners to master space technology, rocket engineering, AI, coding, and robotics through interactive, project-based learning.",
   keywords: ["AQMAAR Academy", "Space Technology for Kids", "Rocket Science", "Coding for Kids", "Robotics for Teens", "AI Learning", "STEM Education", "Future Skills"],
   authors: [{ name: "AQMAAR Academy" }],
-  icons: {
-    icon: "/aqmaar_academy_logo.png",
-    shortcut: "/aqmaar_academy_logo.png",
-    apple: "/aqmaar_academy_logo.png",
-  },
 };
 
 export default function RootLayout({
