@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Layers, Cpu, Terminal, ArrowRight, CheckCircle, ChevronDown, DollarSign } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { enrollLinks } from "@/data/enrollLinks";
 
 interface ProgramPillars {
   cad: string;
@@ -55,6 +56,7 @@ interface Program {
   skills: string[];
   image: string;
   theme: ProgramTheme;
+  enrollUrl: string;
 }
 
 /* ────────────────────────────────────────────
@@ -126,10 +128,17 @@ const pioneerTheme: ProgramTheme = {
 function ProgramCard({ prog }: { prog: Program }) {
   const { lang, t: translate } = useLanguage();
   const themeStyles = prog.theme;
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <details className={`program-details w-full h-auto lg:h-[450px] open:h-auto flex flex-col rounded-2xl panel border ${themeStyles.cardBorder} bg-space-deep/90 group overflow-hidden ${themeStyles.borderHover} ${themeStyles.cardOpenGlow} transition-all duration-300`}>
-      <summary className="program-summary flex flex-col flex-1 group-open:flex-none cursor-pointer select-none list-none">
+    <div
+      {...{ open: isOpen ? true : undefined }}
+      className={`program-details w-full h-auto lg:h-[450px] open:h-auto open:grid open:grid-rows-[auto_1fr] flex flex-col rounded-2xl panel border ${themeStyles.cardBorder} bg-space-deep/90 group overflow-hidden ${themeStyles.borderHover} ${themeStyles.cardOpenGlow} transition-all duration-300`}
+    >
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="program-summary flex flex-col flex-1 group-open:flex-none cursor-pointer select-none list-none"
+      >
         {/* ── Overlay Image Header ── */}
         <div className="relative w-full h-48 sm:h-52 overflow-hidden">
           <Image
@@ -185,10 +194,10 @@ function ProgramCard({ prog }: { prog: Program }) {
             </span>
           </div>
         </div>
-      </summary>
+      </div>
 
       {/* ═══════ Expanded Details Panel ═══════ */}
-      <div className="px-6 sm:px-7 pb-7 border-t border-white/[0.04] flex flex-col flex-1">
+      <div className="px-6 sm:px-7 pb-7 border-t border-white/[0.04] flex flex-col flex-1 hidden group-open:flex">
         {/* Curriculum header */}
         <div className="flex items-center gap-3.5 py-4 border-b border-white/[0.04]">
           <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-slate-800/80 shrink-0">
@@ -216,7 +225,7 @@ function ProgramCard({ prog }: { prog: Program }) {
             <Terminal className={`w-4.5 h-4.5 ${themeStyles.accent} shrink-0 mt-0.5`} />
             <div className="flex flex-col gap-1 text-start">
               <span className="text-xs font-bold text-white uppercase tracking-wider">{translate("programs.pillars.software")}</span>
-              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed">{prog.pillars.software}</p>
+              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed lg:min-h-[5.75rem]">{prog.pillars.software}</p>
             </div>
           </div>
 
@@ -224,7 +233,7 @@ function ProgramCard({ prog }: { prog: Program }) {
             <Cpu className={`w-4.5 h-4.5 ${themeStyles.pillarAccent} shrink-0 mt-0.5`} />
             <div className="flex flex-col gap-1 text-start">
               <span className="text-xs font-bold text-white uppercase tracking-wider">{translate("programs.pillars.hardware")}</span>
-              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed">{prog.pillars.hardware}</p>
+              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed lg:min-h-[5.75rem]">{prog.pillars.hardware}</p>
             </div>
           </div>
 
@@ -232,7 +241,7 @@ function ProgramCard({ prog }: { prog: Program }) {
             <Layers className={`w-4.5 h-4.5 ${themeStyles.accent} shrink-0 mt-0.5`} />
             <div className="flex flex-col gap-1 text-start">
               <span className="text-xs font-bold text-white uppercase tracking-wider">{translate("programs.pillars.cad")}</span>
-              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed">{prog.pillars.cad}</p>
+              <p className="text-xs sm:text-[13px] text-silver-light leading-relaxed lg:min-h-[5.75rem]">{prog.pillars.cad}</p>
             </div>
           </div>
         </div>
@@ -240,7 +249,7 @@ function ProgramCard({ prog }: { prog: Program }) {
         {/* Capstone + Price — stacked vertically */}
         <div className="flex flex-col gap-3.5 pt-5 border-t border-white/[0.04] mt-auto">
           {/* Capstone Card */}
-          <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 flex items-start gap-3 hover:bg-slate-900/60 hover:border-slate-700/60 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]">
+          <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 flex items-start gap-3 hover:bg-slate-900/60 hover:border-slate-700/60 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] lg:min-h-[6.25rem]">
             <div className="w-9 h-9 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-center shrink-0 mt-0.5">
               <CheckCircle className={`w-4 h-4 ${themeStyles.accentMuted}`} />
             </div>
@@ -263,7 +272,9 @@ function ProgramCard({ prog }: { prog: Program }) {
 
           {/* Enroll CTA */}
           <a
-            href="#contact"
+            href={prog.enrollUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`w-full mt-1 py-3.5 rounded-full font-display font-semibold text-xs text-space-dark ${themeStyles.enrollGradient} ${themeStyles.enrollHoverShadow} flex items-center justify-center gap-1.5 transition-all duration-300 border border-white/20`}
           >
             <span>{translate("programs.enrollButton")}{prog.title}</span>
@@ -271,7 +282,7 @@ function ProgramCard({ prog }: { prog: Program }) {
           </a>
         </div>
       </div>
-    </details>
+    </div>
   );
 }
 
@@ -303,6 +314,7 @@ export default function Programs() {
       skills: trackTrans.skills,
       image: images[key],
       theme: themes[key],
+      enrollUrl: enrollLinks[key],
     };
   });
 
@@ -326,7 +338,7 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
           {programsData.map((prog) => (
             <ProgramCard key={prog.title} prog={prog} />
           ))}

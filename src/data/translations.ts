@@ -50,7 +50,7 @@ export const translations = {
           title: "Space Juniors",
           age: "Ages 8–11",
           duration: "8 Weeks · 48 Hours",
-          price: "EGP 3,000",
+          price: "EGP 6,000",
           shortDesc: "Introduces logical workflows, basic visual coding, safe mechanical assemblies, and creative 3D prototyping through space-themed projects.",
           pillars: {
             software: "Block-based logical scripts (loops, events, variables) to control simulated rovers on Mars grids.",
@@ -64,7 +64,7 @@ export const translations = {
           title: "Space Seniors",
           age: "Ages 12–14",
           duration: "8 Weeks · 48 Hours",
-          price: "EGP 4,000",
+          price: "EGP 8,000",
           shortDesc: "Transitions students to textual Python scripts, Arduino electronics, and structural 3D CAD modeling with real telemetry sensors.",
           pillars: {
             software: "Introduction to textual Python syntax: variables, loops, arithmetic telemetry data processing.",
@@ -78,7 +78,7 @@ export const translations = {
           title: "Space Pioneers",
           age: "Ages 15–18",
           duration: "8 Weeks · 48 Hours",
-          price: "EGP 5,000",
+          price: "EGP 10,000",
           shortDesc: "Advanced flight programming, high-performance embedded systems, and parametric engineering blueprints for university-ready students.",
           pillars: {
             software: "Real-time firmware in C++, Python telemetry pipelines, telemetry dashboards (websockets).",
@@ -101,7 +101,7 @@ export const translations = {
         },
         {
           question: "Are classes online or onsite?",
-          answer: "We offer both! We run live online courses with remote simulator tools and home engineering hardware kits, as well as onsite classes in our modern maker labs, where students directly compile code onto microcontroller boards and launch physical sounding rockets.",
+          answer: "All of our classes are held strictly onsite in our modern maker labs. This hands-on, offline environment allows students to work directly with physical hardware, compile code onto microcontroller boards, and build and launch physical sounding rockets.",
         },
         {
           question: "Do students receive certificates?",
@@ -112,9 +112,9 @@ export const translations = {
           answer: "Our curriculum features professional-grade systems. Software languages include block logic, Python, and C++. Hardware topics cover Arduino, ARM STM32, LoRa telemetry sensors, and circuit designs. CAD modeling tools feature Tinkercad, Autodesk Fusion 360, and SolidWorks.",
         },
         {
-          question: "How do we register for a free class?",
-          answer: "Fill out the contact form below or reach out to our admissions team directly. Our academic coordinator will schedule a short video call to assess your child's age, interest, and tech level to align them with the perfect track.",
-        }
+          question: "How do I register for a program?",
+          answer: "You can register by selecting your desired program and filling out the application form directly on our website. Alternatively, you can contact us directly via WhatsApp to complete your registration.",
+        },
       ]
     },
     contact: {
@@ -208,7 +208,7 @@ export const translations = {
           title: "Space Juniors",
           age: "الأعمار 8–11",
           duration: "8 أسابيع · 48 ساعة",
-          price: "3,000 ج.م",
+          price: "6,000 ج.م",
           shortDesc: "يقدم المسار منطق البرمجة، والترميز المرئي الأساسي، والتجميعات الميكانيكية الآمنة، والنمذجة ثلاثية الأبعاد من خلال مشاريع فضاء تفاعلية.",
           pillars: {
             software: "البرمجة المرئية القائمة على الكتل (التكرار، الأحداث، المتغيرات) للتحكم في روبوتات محاكاة على المريخ.",
@@ -222,7 +222,7 @@ export const translations = {
           title: "Space Seniors",
           age: "الأعمار 12–14",
           duration: "8 أسابيع · 48 ساعة",
-          price: "4,000 ج.م",
+          price: "8,000 ج.م",
           shortDesc: "ينقل الطلاب للبرمجة النصية بلغة بايثون، وإلكترونيات آردوينو، وتصميم CAD للمجسمات الميكانيكية مع مستشعرات القياس عن بعد.",
           pillars: {
             software: "مقدمة للغة البرمجة بايثون وكتابة الكود النصي: المتغيرات، التكرارات، ومعالجة بيانات القياس الفضائي عن بعد.",
@@ -236,7 +236,7 @@ export const translations = {
           title: "Space Pioneers",
           age: "الأعمار 15–18",
           duration: "8 أسابيع · 48 ساعة",
-          price: "5,000 ج.م",
+          price: "10,000 ج.م",
           shortDesc: "برمجة طيران متقدمة، وأنظمة مدمجة عالية الأداء، وتصميم هياكل هندسية متطورة لإعداد الطلاب لمرحلة الجامعة.",
           pillars: {
             software: "البرمجة المدمجة للأنظمة في الوقت الفعلي بلغة C++، ومعالجة تدفق البيانات وبناء لوحات المراقبة ولوحات العرض الرقمية.",
@@ -259,7 +259,7 @@ export const translations = {
         },
         {
           question: "هل الفصول الدراسية عبر الإنترنت أم حضورية؟",
-          answer: "نحن نقدم كلا الخيارين! ندير دورات تفاعلية مباشرة عبر الإنترنت باستخدام أدوات المحاكاة وحقائب العتاد الهندسي المنزلية، بالإضافة إلى فصول حضورية في معامل التصنيع الحديثة لدينا، حيث يقوم الطلاب ببرمجة لوحات التحكم وإطلاق صواريخ تجريبية حقيقية.",
+          answer: "جميع دوراتنا حضورية فقط داخل معامل التصنيع الحديثة لدينا. نحن نؤمن بأهمية التعليم العملي المباشر، حيث يتواجد الطلاب في المعامل لبرمجة لوحات التحكم وتطوير وإطلاق صواريخ تجريبية حقيقية بأنفسهم.",
         },
         {
           question: "هل يحصل الطلاب على شهادات؟",
@@ -270,8 +270,8 @@ export const translations = {
           answer: "منهجنا يعتمد على أدوات احترافية متطابقة مع الصناعة. تشمل البرمجيات: البرمجة المرئية، بايثون، وC++. تشمل الأجهزة: آردوينو، ومعالجات ARM STM32، ومستشعرات القياس وراديو LoRa. وتشمل برامج الـ CAD: Tinkercad وAutodesk Fusion 360 وSolidWorks.",
         },
         {
-          question: "كيف نسجل في فصل تجريبي مجاني؟",
-          answer: "املأ استمارة الاتصال بالأسفل أو تواصل مع فريق القبول لدينا مباشرة. ستقوم منسقة الشؤون الأكاديمية بتنسيق مكالمة فيديو قصيرة لتقييم عمر طفلك واهتمامه ومستواه التقني لتوجيهه إلى المسار الدراسي الأنسب له.",
+          question: "كيف يمكنني التسجيل في البرامج؟",
+          answer: "يمكنك التسجيل بسهولة من خلال اختيار البرنامج المناسب لك وتعبئة نموذج التسجيل مباشرة على موقعنا، أو التواصل معنا مباشرة عبر تطبيق واتساب لإتمام عملية التسجيل.",
         }
       ]
     },
@@ -282,7 +282,7 @@ export const translations = {
       subtitle: "لديك أسئلة حول مناهجنا الدراسية، مواعيد الفصول، أو المسارات؟ اترك لنا رسالة وسيتواصل معك منسقنا قريباً.",
       sidebar: {
         emailLabel: "الدعم عبر البريد الإلكتروني",
-        phoneLabel: "اتصل بالقبول",
+        phoneLabel: "اتصل بنا",
         whatsappLabel: "دردشة واتساب",
         campusLabel: "موقع الأكاديمية",
         followUs: "تابعنا على",

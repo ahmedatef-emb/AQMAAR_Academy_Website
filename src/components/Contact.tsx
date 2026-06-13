@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, Check, Share2, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, Share2, MessageSquare, ChevronDown } from "lucide-react";
 import { contactConfig } from "@/data/contact";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -250,18 +250,21 @@ export default function Contact() {
                   <label htmlFor="subject" className="text-xs font-semibold text-silver uppercase tracking-wider">
                     {t("contact.form.program")}
                   </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full bg-space-deep border border-slate-800 focus:border-accent/40 focus:bg-space-dark rounded-lg px-3.5 py-2.5 text-sm text-silver-light outline-none transition-colors duration-200"
-                  >
-                    <option value="elementary">{t("contact.form.subjects.elementary")}</option>
-                    <option value="preparatory">{t("contact.form.subjects.preparatory")}</option>
-                    <option value="secondary">{t("contact.form.subjects.secondary")}</option>
-                    <option value="general">{t("contact.form.subjects.general")}</option>
-                  </select>
+                  <div className="relative flex items-center">
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className="w-full appearance-none bg-space-deep border border-slate-800 focus:border-accent/40 focus:bg-space-dark rounded-lg pl-3.5 pr-10 rtl:pl-10 rtl:pr-3.5 py-2.5 text-sm text-silver-light outline-none transition-colors duration-200"
+                    >
+                      <option value="elementary">{t("contact.form.subjects.elementary")}</option>
+                      <option value="preparatory">{t("contact.form.subjects.preparatory")}</option>
+                      <option value="secondary">{t("contact.form.subjects.secondary")}</option>
+                      <option value="general">{t("contact.form.subjects.general")}</option>
+                    </select>
+                    <ChevronDown className="absolute right-3.5 rtl:left-3.5 rtl:right-auto w-4 h-4 text-silver-light pointer-events-none" />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5 text-start">
@@ -284,7 +287,7 @@ export default function Contact() {
                   type="submit"
                   className="w-full mt-2 py-3 rounded-full font-display font-semibold text-sm btn-accent flex items-center justify-center gap-2"
                 >
-                  <Send className={`w-4 h-4 ${lang === 'ar' ? 'rotate-180' : ''}`} />
+                  <Send className={`w-4 h-4 ${lang === 'ar' ? 'scale-x-[-1]' : ''}`} />
                   <span>{t("contact.form.submit")}</span>
                 </button>
               </form>
